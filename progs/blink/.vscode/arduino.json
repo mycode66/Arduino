@@ -1,0 +1,7 @@
+{
+    "board": "arduino:avr:mega",
+    "configuration": "cpu=atmega2560",
+    "programmer": "AVR ISP",
+    "port": "/dev/ttyACM0",
+    "sketch": "blink.ino"
+}
