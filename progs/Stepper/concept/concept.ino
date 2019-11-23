@@ -1,11 +1,11 @@
 
  
 int enablePin = 8;
-int inA1Pin   = 9;
-int inA2Pin   = 10;
+int inA1Pin   = 6;
+int inA2Pin   = 7;
 
-int inB1Pin   = 7;
-int inB2Pin   = 6;
+int inB1Pin   = 5;
+int inB2Pin   = 4;
 
 int n=0;
 float fAngel = 0;
@@ -35,7 +35,7 @@ void setup()
  
 void loop()
 {
-  delay(9999999);
+  //delay(9999999);
   /*
   if ( n  >= 48 ) {
     digitalWrite(enablePin, LOW);   
@@ -44,12 +44,12 @@ void loop()
     digitalWrite(enablePin, HIGH);   
   }
   */
-  for ( int i = 0; i < 24; i++)
+  for ( int i = 0; i < 240; i++)
     step(LEFT_DIR);
 
   delay(1000);
   
-  for ( int i = 0; i < 24; i++)
+  for ( int i = 0; i < 240; i++)
     step(RIGHT_DIR);
   delay(1000);
   //Serial.println(fAngel);

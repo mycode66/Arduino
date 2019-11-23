@@ -1,25 +1,54 @@
+#include <InvertedTM1638.h>
+#include <TM1638.h>
+#include <TM16XXFonts.h>
+#include <TM1638QYF.h>
+#include <TM1640.h>
+#include <TM16XX.h>
+
     /*     Arduino Color Sensing Tutorial
      *      
      *  by Dejan Nedelkovski, www.HowToMechatronics.com
      *  
      */
-     
+
+  
+    const int STROBE    = 10;
+    const int CLOCK     = 11;
+    const int DATA      = 12;
+
      
     #define S0 4
     #define S1 5
     #define S2 6
     #define S3 7
-    #define POWER 2
+    #define POWER 13
     #define sensorOut 8
     int frequency = 0;
     int color=0;
     char strBuffer[256];
-    
+
+    // define a modules
+    TM1638 modules(DATA, CLOCK, STROBE);
+
+     void showDisplay( String strMessage, byte nLed, int nThisDelay = 0) {
+        
+        modules.setLEDs( nLed);   
+        modules.clearDisplay();
+        modules.setDisplayToString(strMessage);
+        delay(nThisDelay);
+    }
+
+  
     void setup() {
       pinMode(S0, OUTPUT);
       pinMode(S1, OUTPUT);
       pinMode(S2, OUTPUT);
       pinMode(S3, OUTPUT);
+
+      pinMode(DATA, OUTPUT);
+      pinMode(CLOCK, OUTPUT);
+      pinMode(STROBE, OUTPUT);
+      
       pinMode(POWER, OUTPUT);
       pinMode(sensorOut, INPUT);
       
@@ -27,7 +56,7 @@
       digitalWrite(S0,HIGH);
       digitalWrite(S1,HIGH);
 
-      digitalWrite(POWER,HIGH);
+      digitalWrite(POWER,LOW);
       
       Serial.begin(9600);
     }
@@ -93,53 +122,15 @@ int readColor() {
     return color;  
 }
 
+    int xxx = 0;
     void loop(){
-      
+
       int c = 0;
-      char s[8][10] = {"Unknown","Red","Orang","Green","Yellow","Blue","White","Pink"};
+      char s[8][10] = {"no Idea","rED","Orang","grEEN","yELLOW","BLUE","WHItE","Pink"};
       
-      c = readColor();
+      //c = readColor();
+      showDisplay( s[c], xxx++ );
 
       Serial.println( s[c]);
-      delay(1000);
+      delay(100);
     }
-
-/*
-    void loop() {
-
-      digitalWrite(POWER,HIGH);
-      
-      // Setting red filtered photodiodes to be read
-      digitalWrite(S2,LOW);
-      digitalWrite(S3,LOW);
-      // Reading the output frequency
-      frequency = pulseIn(sensorOut, LOW);
-      // Printing the value on the serial monitor
-      Serial.print("R= ");//printing name
-      Serial.print(frequency);//printing RED color frequency
-      Serial.print("  ");
-      delay(500);
-      // Setting Green filtered photodiodes to be read
-      digitalWrite(S2,HIGH);
-      digitalWrite(S3,HIGH);
-      // Reading the output frequency
-      frequency = pulseIn(sensorOut, LOW);
-      // Printing the value on the serial monitor
-      Serial.print("G= ");//printing name
-      Serial.print(frequency);//printing RED color frequency
-      Serial.print("  ");
-      delay(500);
-      // Setting Blue filtered photodiodes to be read
-      digitalWrite(S2,LOW);
-      digitalWrite(S3,HIGH);
-      // Reading the output frequency
-      frequency = pulseIn(sensorOut, LOW);
-      // Printing the value on the serial monitor
-      Serial.print("B= ");//printing name
-      Serial.print(frequency);//printing RED color frequency
-      Serial.println("  ");
-      
-      digitalWrite(POWER,LOW);
-      delay(10000);
-    }
- */
