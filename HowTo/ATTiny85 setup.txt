@@ -1,0 +1,91 @@
+Go to : https://github.com/damellis/attiny/
+
+
+Add : https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
+to additional boards - under preference
+
+upload Android ISP example.
+
+Wiring:
+
+Mega            Tiny85
+-------------    ----------
+50 (MISO)   6
+51 (MOSI)  5  
+52 (SCK)    7
+10               1 ( Reset)
+
+10 uf in between Arduino Reset and ground.
+
+----------------------------------------------------------------------------------------------
+IDE:
+Board: ATTiny 25/45/85
+Processor: ATtiny 85
+Clock: Internal 8MHZ
+
+----------------------------------------------------------------------------------------------
+Display module TM1638 
+---------------------------------------------------------------------------------------------
+
+//const int strobe = 7;
+//const int clock = 9;
+//const int data = 8;
+
+
+const int strobe = 0;
+const int clock = 1;
+const int data = 2;
+
+
+#include "Arduino.h"
+
+#include <TM1638.h>
+ 
+// define a module on data pin 8, clock pin 9 and strobe pin 10
+TM1638 module(data, clock, strobe, true, 1);
+long interval=1000;
+int factor = 100;
+String textScroll="123456789ABCD";
+String bckp;
+byte buttons;
+unsigned long previousMillis = 0;
+ 
+void setup()
+{
+  bckp = textScroll;
+}
+
+void resetLEDs( bool OnOff = false) {
+  for ( int i = 0; i < 8; i++) {
+    module.setLEDs( OnOff ? 8 : 0);
+  }
+}
+
+
+void loop()
+{
+  
+  for( long i=0; i<= 0xFFFFFFF; i++) {
+    
+    module.setDisplayToBinNumber( i, 0); //(String(i,DEC)).c_str());
+   
+    module.setLEDs(buttons);
+ 
+    buttons=module.getButtons();
+    
+    
+
+    if ( buttons != 0) {
+      interval = factor * buttons;
+    }
+    
+    delay(interval);  
+
+ 
+        
+    
+   // resetLEDs();
+    
+     
+  }
+}
