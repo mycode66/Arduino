@@ -12,8 +12,8 @@
  
 Stepper stepper(STEPS, SP_A1, SP_A2, SP_A3, SP_A4);
 
-int st = 2038;
-int sp = 1; // < --- Do no exceed more than 5
+int st = 203;
+int sp = 5; // < --- Do no exceed more than 5
 
  
 void setup() {
