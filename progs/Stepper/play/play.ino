@@ -12,7 +12,7 @@
  
 Stepper stepper(STEPS, SP_A1, SP_A2, SP_A3, SP_A4);
 
-int st = 203;
+int st = 2003;
 int sp = 5; // < --- Do no exceed more than 5
 
  
