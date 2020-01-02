@@ -1,11 +1,11 @@
 
  
 int enablePin = 8;
-int inA1Pin   = 6;
-int inA2Pin   = 7;
+int inA1Pin   = 11;
+int inA2Pin   = 10;
 
-int inB1Pin   = 5;
-int inB2Pin   = 4;
+int inB1Pin   = 9;
+int inB2Pin   = 8;
 
 int n=0;
 float fAngel = 0;
@@ -47,11 +47,11 @@ void loop()
   for ( int i = 0; i < 240; i++)
     step(LEFT_DIR);
 
-  delay(1000);
+  delay(100);
   
   for ( int i = 0; i < 240; i++)
     step(RIGHT_DIR);
-  delay(1000);
+  delay(100);
   //Serial.println(fAngel);
 }
 

@@ -1,10 +1,8 @@
 #include <Stepper.h>
 
-
-
 #define SP_A1 8
-#define SP_A2 10
-#define SP_A3 9
+#define SP_A2 9
+#define SP_A3 10
 #define SP_A4 11
 
 // Stepper 28BYJ-48 spec.

@@ -1,8 +1,8 @@
 #include <Stepper.h>
 
 #define SP_A1 8
-#define SP_A2 10
-#define SP_A3 9
+#define SP_A2 9
+#define SP_A3 10
 #define SP_A4 11
 
 // Stepper 28BYJ-48 spec.
@@ -18,10 +18,11 @@ String input;
 
 void setup() {
     Serial.begin(9600); 
-    delay(2000);  
+    delay(1000);  
 
     stepper.setSpeed(sp);
     Serial.println("Ready ... ");
+      
 }
 
 void loop() {
@@ -34,6 +35,7 @@ void loop() {
 
         
         Serial.println("Doing "+ String(st) );  
+   
         stepper.step(st);
     }
     delay(200);
