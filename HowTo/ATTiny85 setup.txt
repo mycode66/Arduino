@@ -10,18 +10,24 @@ Wiring:
 
 Mega            Tiny85
 -------------    ----------
-50 (MISO)   6
-51 (MOSI)  5  
-52 (SCK)    7
-10               1 ( Reset)
+50 (MISO)         6
+51 (MOSI)         5  
+52 (SCK)          7
+10                1 ( Reset)
 
 10 uf in between Arduino Reset and ground.
 
+
+----------------------------------------------------------------------------------------------
+Upload: File->Examples->ArduinoISP->ArduinoISP
+Programer:Arduino as ISP
 ----------------------------------------------------------------------------------------------
 IDE:
 Board: ATTiny 25/45/85
 Processor: ATtiny 85
 Clock: Internal 8MHZ
+Programmer: Arduino as ISP
+Note: Normally, at first, it take few upload tries.
 
 ----------------------------------------------------------------------------------------------
 Display module TM1638 
